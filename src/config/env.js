@@ -5,6 +5,7 @@ import z from "zod";
 let envSchema = z.object({
   PORT: z.coerce.number(),
   MONGO_URL: z.string(),
+  NODE_ENV: z.string(),
 });
 
 let parsedEnv = envSchema.safeParse(process.env);
