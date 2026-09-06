@@ -1,0 +1,5 @@
+export let ROLES = {
+  SUPER_ADMIN: "SUPER_ADMIN",
+  ADMIN: "ADMIN",
+  SCORER: "SCORER",
+};
