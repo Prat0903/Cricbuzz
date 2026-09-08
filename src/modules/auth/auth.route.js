@@ -1,0 +1,29 @@
+import express from "express";
+import passport from "passport";
+import AuthController from "./auth.controller.js";
+
+let router = express.Router();
+let authController = new AuthController();
+
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+    prompt: "select account",
+    session: false,
+  }),
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate(
+    "google",
+    {
+      session: false,
+      failureRedirect: "/",
+    },
+    authController.googleCallback.bind(authController), 
+  ),
+);
+
+export default router;
