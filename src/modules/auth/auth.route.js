@@ -9,21 +9,18 @@ router.get(
   "/google",
   passport.authenticate("google", {
     scope: ["profile", "email"],
-    prompt: "select account",
+    prompt: "select_account",
     session: false,
   }),
 );
 
 router.get(
   "/google/callback",
-  passport.authenticate(
-    "google",
-    {
-      session: false,
-      failureRedirect: "/",
-    },
-    authController.googleCallback.bind(authController), 
-  ),
+  passport.authenticate("google", {
+    session: false,
+    failureRedirect: "/",
+  }),
+  authController.googleCallback.bind(authController),
 );
 
 export default router;

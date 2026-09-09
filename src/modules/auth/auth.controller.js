@@ -3,7 +3,7 @@ export default class AuthController {
 
   async googleCallback(req, res) {
     console.log(req.user);
-    res.json({
+    return res.json({
       data: req.user,
     });
   }
