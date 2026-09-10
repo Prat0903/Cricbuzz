@@ -1,7 +1,11 @@
-export default class AuthController {
-  constructor() {}
+import AuthService from "./auth.service.js";
 
-  async googleCallback(req, res) {
+export default class AuthController {
+  constructor() {
+    this.userService = new AuthService();
+  }
+
+  async GoogleCallback(req, res) {
     console.log(req.user);
     return res.json({
       data: req.user,

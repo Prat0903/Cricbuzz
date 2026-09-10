@@ -28,6 +28,10 @@ let userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    picture: {
+      type: String,
+      default: "https://px.pixxo.io/test/user.png",
+    },
   },
   {
     timestamps: true,

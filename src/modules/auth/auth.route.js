@@ -20,7 +20,7 @@ router.get(
     session: false,
     failureRedirect: "/",
   }),
-  authController.googleCallback.bind(authController),
+  authController.GoogleCallback.bind(authController),
 );
 
 export default router;
