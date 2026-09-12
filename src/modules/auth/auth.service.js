@@ -1,11 +1,47 @@
 import UserRepo from "../../repository/user.repository.js";
+import jwt from "jsonwebtoken";
+import env from "../../config/env.js";
+import { app_config } from "../../constant/app.constant.js";
 
 export default class AuthService {
   constructor() {
     this.userRepo = new UserRepo();
-  } 
+  }
 
   async CreateUser(user) {
-    await this.userRepo.create(user);
+    let isUserExist = this.userRepo.findByEmail(user.emails[0].value);
+
+    let result = isUserExist;
+
+    if (!isUserExist) {
+      let _user = await this.userRepo.create({
+        email: user.emails[0].value,
+        name: user.displayName,
+        picture: user.photos[0].value,
+      });
+
+      result = _user;
+    }
+
+    let payloadData = {
+      id: result._id,
+      email: user.emails[0].value,
+      name: user.displayName,
+      picture: user.photos[0].value,
+    };
+
+    let refreshToken = jwt.sign(
+      payloadData,
+      env.JWT_REFRESH_SECRET,
+      app_config.jwt.refrreshToken,
+    );
+
+    let accessToken = jwt.sign(
+      payloadData,
+      env.JWT_ACCESS_SECRET,
+      app_config.jwt.accessToken,
+    );
+
+    return { refreshToken, accessToken };
   }
 }

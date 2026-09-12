@@ -4,6 +4,7 @@ import morgan from "morgan";
 import securityMiddleware from "./middleware/security.middleware.js";
 import googleOAuthMiddleware from "./middleware/googleOAuth.middleware.js";
 import authRouter from "./modules/auth/auth.route.js";
+import cookieParser from "cookie-parser";
 
 export default function createApp() {
   let app = express();
@@ -11,6 +12,8 @@ export default function createApp() {
   if (env.NODE_ENV === "development") {
     app.use(morgan("dev"));
   }
+
+  app.use(cookieParser());
 
   securityMiddleware(app);
   googleOAuthMiddleware(app);

@@ -14,7 +14,9 @@ let envSchema = z.object({
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
   GOOGLE_CALLBACK_URL: z.string(),
-  JWT_SECRET: z.string(),
+  JWT_ACCESS_SECRET: z.string(),
+  JWT_REFRESH_SECRET: z.string(),
+  REDIRECT_URL: z.string(),
 });
 
 let parsedEnv = envSchema.safeParse(process.env);

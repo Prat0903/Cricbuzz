@@ -1,4 +1,6 @@
+import env from "../../config/env.js";
 import AuthService from "./auth.service.js";
+import { app_config } from "../../constant/app.constant.js";
 
 export default class AuthController {
   constructor() {
@@ -6,9 +8,14 @@ export default class AuthController {
   }
 
   async GoogleCallback(req, res) {
-    console.log(req.user);
-    return res.json({
-      data: req.user,
-    });
+    let { accessToken, refreshToken } = await this.userService.CreateUser(
+      req.user,
+    );
+
+    res.cookie("refreshToken", refreshToken, app_config.cookie.refreshToken);
+
+    res.cookie("accessToken", accessToken, app_config.cookie.accessToken);
+
+    res.redirect(env.REDIRECT_URL);
   }
 }
