@@ -9,7 +9,7 @@ export default class AuthService {
   }
 
   async CreateUser(user) {
-    let isUserExist = this.userRepo.findByEmail(user.emails[0].value);
+    let isUserExist = await this.userRepo.findByEmail(user.emails[0].value);
 
     let result = isUserExist;
 

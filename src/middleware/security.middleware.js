@@ -5,8 +5,9 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import express from "express";
 import env from "../config/env.js";
+import cookieParser from "cookie-parser";
 
-export default function securityMiddleware (app) {
+export default function securityMiddleware(app) {
   app.use(helmet());
 
   app.use(
@@ -25,9 +26,11 @@ export default function securityMiddleware (app) {
     }),
   );
 
+  app.use(cookieParser());
+
   app.use(hpp());
   app.use(compression());
 
   app.use(express.json({ limit: "3mb" }));
   app.use(express.urlencoded({ extended: true, limit: "3mb" }));
-};
+}
