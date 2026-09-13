@@ -23,4 +23,6 @@ router.get(
   authController.GoogleCallback.bind(authController),
 );
 
+// router.get("/me", authController.getMe.bind(authController));
+
 export default router;
