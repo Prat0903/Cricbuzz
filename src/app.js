@@ -5,6 +5,7 @@ import securityMiddleware from "./middleware/security.middleware.js";
 import googleOAuthMiddleware from "./middleware/googleOAuth.middleware.js";
 import authRouter from "./modules/auth/auth.route.js";
 import errorHandler from "./middleware/errorHandler.middleware.js";
+import notFound from "./middleware/notFound.middleware.js";
 
 export default function createApp() {
   let app = express();
@@ -17,6 +18,8 @@ export default function createApp() {
   googleOAuthMiddleware(app);
 
   app.use("/api/auth", authRouter);
+
+  app.use(notFound);
 
   app.use(errorHandler);
 
