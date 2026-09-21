@@ -26,14 +26,14 @@ router.get(
 );
 
 router.get(
-  "/me",
-  authMiddleware,
-  asyncHandler(authController.getMe.bind(authController)),
+  "/refreshToken",
+  asyncHandler(authController.getRefreshAccessToken.bind(authController)),
 );
 
 router.get(
-  "/refreshToken",
-  asyncHandler(authController.getRefreshAccessToken.bind(authController)),
+  "/me",
+  authMiddleware,
+  asyncHandler(authController.getMe.bind(authController)),
 );
 
 export default router;

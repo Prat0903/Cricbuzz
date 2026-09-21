@@ -1,3 +1,5 @@
+import env from "../config/env.js";
+
 export default {
   PORT: 3000,
   MONGO_URL: "mongodb://localhost:27017",
@@ -7,27 +9,32 @@ export default {
   RATELIMIT: 100,
 };
 
-export let app_config = {
-  jwt: {
-    refrreshToken: {
-      expiresIn: "30D",
+export let app_config = () => {
+  return {
+    jwt: {
+      refreshToken: {
+        expiresIn: env.NODE_ENV === "production" ? "30D" : "1H",
+      },
+      accessToken: {
+        expiresIn: env.NODE_ENV === "production" ? "1H" : "15S",
+      },
     },
-    accessToken: {
-      expiresIn: "1H",
+    cookie: {
+      refreshToken: {
+        httpOnly: true,
+        secure: env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge:
+          env.NODE_ENV === "production"
+            ? 30 * 24 * 60 * 60 * 1000
+            : 60 * 60 * 1000,
+      },
+      accessToken: {
+        httpOnly: false,
+        secure: env.NODE_ENV === "production",
+        sameSite: "lax",
+        maxAge: env.NODE_ENV === "production" ? 60 * 60 * 1000 : 15 * 1000,
+      },
     },
-  },
-  cookie: {
-    refreshToken: {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-    },
-    accessToken: {
-      httpOnly: true,
-      secure: false,
-      sameSite: "lax",
-      maxAge: 60 * 60 * 1000,
-    },
-  },
+  };
 };

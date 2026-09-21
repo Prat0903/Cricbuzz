@@ -17,7 +17,7 @@ export default class AuthService {
     let accessToken = jwt.sign(
       payload,
       env.JWT_ACCESS_SECRET,
-      app_config.jwt.accessToken,
+      app_config().jwt.accessToken,
     );
 
     return { accessToken };
@@ -49,13 +49,13 @@ export default class AuthService {
     let refreshToken = jwt.sign(
       payloadData,
       env.JWT_REFRESH_SECRET,
-      app_config.jwt.refrreshToken,
+      app_config().jwt.refreshToken,
     );
 
     let accessToken = jwt.sign(
       payloadData,
       env.JWT_ACCESS_SECRET,
-      app_config.jwt.accessToken,
+      app_config().jwt.accessToken,
     );
 
     return { refreshToken, accessToken };

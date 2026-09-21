@@ -13,7 +13,7 @@ export default class AuthController {
       req.cookies.refreshToken,
     );
 
-    res.cookie("accessToken", accessToken, app_config.cookie.accessToken);
+    res.cookie("accessToken", accessToken, app_config().cookie.accessToken);
 
     return buildSuccessResponse(res);
   }
@@ -27,9 +27,9 @@ export default class AuthController {
       req.user,
     );
 
-    res.cookie("refreshToken", refreshToken, app_config.cookie.refreshToken);
+    res.cookie("refreshToken", refreshToken, app_config().cookie.refreshToken);
 
-    res.cookie("accessToken", accessToken, app_config.cookie.accessToken);
+    res.cookie("accessToken", accessToken, app_config().cookie.accessToken);
 
     res.redirect(env.REDIRECT_URL);
   }
