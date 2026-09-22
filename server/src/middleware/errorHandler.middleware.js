@@ -1,10 +1,12 @@
 import { StatusCodes } from "http-status-codes";
+import buildFailureResponse from "../shared/utils/buildFailureResponse.js";
 
 let errorHandler = (err, req, res, next) => {
-  res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
-    message: err.message,
-    success: false,
-  });
+  let errMessage = err.message;
+  let errName = err.name;
+  let errStatus = err.statusCode;
+
+  return buildFailureResponse(res, errStatus, errMessage);
 };
 
 export default errorHandler;

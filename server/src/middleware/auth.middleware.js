@@ -9,17 +9,16 @@ export let authMiddleware = (req, res, next) => {
     req.user = payload;
     next();
   } catch (error) {
-    if (error.name === "TokenExpiredError") {
-      throw new UnAuthorize("Access token expired");
-    }
-    throw new UnAuthorize("Token not found");
+    throw new UnAuthorize("Access token expired");
   }
 };
 
-export let authorizationMiddleware = (req, res, next) => {
-  if (req.user.role === "ADMIN" || req.user.role === "SUPER_ADMIN") {
-    next();
-  } else {
-    throw new UnAuthorize("Invalid Role");
-  }
+export let authorizationMiddleware = (role) => {
+  return (req, res, next) => {
+    if (role.includes(req.user.role)) {
+      next();
+    } else {
+      throw new UnAuthorize("Invalid role");
+    }
+  };
 };

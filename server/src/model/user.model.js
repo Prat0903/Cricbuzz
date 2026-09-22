@@ -18,7 +18,7 @@ let userSchema = new Schema(
     password: {
       type: String,
     },
-    roles: {
+    role: {
       type: String,
       enum: Object.values(ROLES),
       default: ROLES.SCORER,
