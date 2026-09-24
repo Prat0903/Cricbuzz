@@ -1,5 +1,5 @@
-import { StatusCodes } from "http-status-codes";
 import buildFailureResponse from "../shared/utils/buildFailureResponse.js";
+import { StatusCodes } from "http-status-codes";
 
 let errorHandler = (err, req, res, next) => {
   let errMessage = err.message;

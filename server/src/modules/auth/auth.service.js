@@ -14,11 +14,7 @@ export default class AuthService {
 
     let payload = jwt.verify(refreshToken, env.JWT_REFRESH_SECRET);
 
-    let accessToken = jwt.sign(
-      payload,
-      env.JWT_ACCESS_SECRET,
-      app_config().jwt.accessToken,
-    );
+    let accessToken = jwt.sign(payload, env.JWT_ACCESS_SECRET);
 
     return { accessToken };
   }
