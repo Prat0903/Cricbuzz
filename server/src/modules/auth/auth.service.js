@@ -10,7 +10,7 @@ export default class AuthService {
   }
 
   async RefreshAccessToken(refreshToken) {
-    if (!refreshToken) throw new NotFound("Refresh token not found");
+    if (!refreshToken) throw new NotFound("Refresh token expired");
 
     let payload = jwt.verify(refreshToken, env.JWT_REFRESH_SECRET);
 
