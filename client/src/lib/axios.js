@@ -16,19 +16,28 @@ api.interceptors.response.use(
 
     if (errSuccess) return Promise.reject(error);
 
+    let redirectToLogin = () => {
+      window.location.href = "/login";
+    };
+
     if (errMessage === "Access token expired") {
       if (errStatusCode !== 401 || originalRequest._retry)
         return Promise.reject(error);
       originalRequest._retry = true;
- 
+
       try {
         await axios.get(`${API_URL}/auth/refreshToken`, {
           withCredentials: true,
         });
         return api(originalRequest);
       } catch (error) {
+        redirectToLogin();
         return Promise.reject(error);
       }
+    }
+
+    if (errMessage === "Refresh token expired") {
+      redirectToLogin();
     }
 
     return Promise.reject(error);
