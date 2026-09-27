@@ -1,8 +1,8 @@
-import UserRepo from "../../repository/user.repository.js";
+import UserRepo from "../../../repository/user.repository.js";
 import jwt from "jsonwebtoken";
-import env from "../../config/env.js";
-import { app_config } from "../../constant/app.constant.js";
-import NotFound from "../../shared/error/notFound.error.js";
+import env from "../../../config/env.js";
+import { app_config } from "../../../constant/app.constant.js";
+import NotFound from "../../../shared/error/notFound.error.js";
 
 export default class AuthService {
   constructor() {

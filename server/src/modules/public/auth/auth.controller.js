@@ -1,7 +1,7 @@
-import env from "../../config/env.js";
+import env from "../../../config/env.js";
 import AuthService from "./auth.service.js";
-import { app_config } from "../../constant/app.constant.js";
-import buildSuccessResponse from "../../shared/utils/buildSuccessResponse.js";
+import { app_config } from "../../../constant/app.constant.js";
+import buildSuccessResponse from "../../../shared/utils/buildSuccessResponse.js";
 
 export default class AuthController {
   constructor() {

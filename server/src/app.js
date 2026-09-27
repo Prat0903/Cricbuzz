@@ -3,7 +3,7 @@ import env from "./config/env.js";
 import morgan from "morgan";
 import securityMiddleware from "./middleware/security.middleware.js";
 import googleOAuthMiddleware from "./middleware/googleOAuth.middleware.js";
-import authRouter from "./modules/auth/auth.route.js";
+import authRouter from "./modules/public/auth/auth.route.js";
 import errorHandler from "./middleware/errorHandler.middleware.js";
 import notFound from "./middleware/notFound.middleware.js";
 

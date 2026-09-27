@@ -1,8 +1,8 @@
 import express from "express";
 import passport from "passport";
 import AuthController from "./auth.controller.js";
-import asyncHandler from "../../shared/utils/asyncHandler.js";
-import { authMiddleware } from "../../middleware/auth.middleware.js";
+import asyncHandler from "../../../shared/utils/asyncHandler.js";
+import { authMiddleware } from "../../../middleware/auth.middleware.js";
 
 let router = express.Router();
 let authController = new AuthController();
