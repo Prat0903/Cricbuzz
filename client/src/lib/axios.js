@@ -2,7 +2,7 @@ import axios from "axios";
 import { API_URL } from "../utils/env";
 
 let api = axios.create({
-  baseURL: API_URL,
+  baseURL: API_URL+'/api',
   withCredentials: true,
 });
 
