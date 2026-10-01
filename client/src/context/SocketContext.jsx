@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useEffect } from "react";
 import { createContext } from "react";
 import { io } from "socket.io-client";
 import { API_URL } from "../utils/env";
@@ -8,15 +7,11 @@ import { API_URL } from "../utils/env";
 export let SocketContext = createContext(null);
 
 const SocketContextWrapper = ({ children }) => {
-  let [socket, setSocket] = useState(null);
+  let [socket] = useState(io(API_URL));
 
-  useEffect(() => {
-    let socket = io(API_URL);
-    socket.on("connected", () => {
-      console.log("Server connected");
-    });
-    setSocket(socket)
-  }, []);
+  socket.on("connected", () => {
+    console.log("Server connected");
+  });
 
   return (
     <SocketContext.Provider value={{ socket }}>
