@@ -1,9 +1,12 @@
+import logger from "../config/logger.js";
+
 let ioInstance = null;
 
 export function initSocket(io) {
   ioInstance = io;
 
   io.on("connection", (socket) => {
-    console.log("A user connected");
+    logger.info("A user connected");
+    socket.emit("connected");
   });
 }
