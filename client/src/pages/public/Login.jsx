@@ -4,7 +4,7 @@ const Login = () => {
   return (
     <div className="h-screen w-full flex justify-center items-center">
       <button
-        onClick={() => (window.location.href = `${API_URL}/auth/google`)}
+        onClick={() => (window.location.href = `${API_URL}/api/auth/google`)}
         className="px-3 py-1 rounded border border-gray-500 cursor-pointer"
       >
         Login with Google
